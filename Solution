@@ -1,0 +1,84 @@
+import numpy as np
+import pandas as pd
+
+airlines = pd.read_csv("airlines.csv")
+airlines
+
+airports = pd.read_csv("airports.csv")
+airports
+
+flights = pd.read_csv("flights.csv")
+flights
+
+planes = pd.read_csv("planes.csv")
+planes
+
+wheather = pd.read_csv("weather.csv")
+wheather
+
+# Q1:- how many total number of days does the flights table cover?
+
+flights.day.sum()
+
+Output:-
+#5291016
+
+
+# Q2:- how many departure cities (not airports) does the flights database cover?
+
+flights.origin.value_counts()
+
+Output:-
+#EWR    120835
+#JFK    111279
+#LGA    104662
+#Name: origin, dtype: int64
+
+# Q3:- what is the relationship between flights and planes tables?
+
+corelation = flights.corrwith(planes,axis=0)
+corelation
+
+Output:-
+#year        NaN
+#air_time    NaN
+#arr_delay   NaN
+#arr_time    NaN
+#day         NaN
+#dep_delay   NaN
+#dep_time    NaN
+#distance    NaN
+#engines     NaN
+#flight      NaN
+#hour        NaN
+#minute      NaN
+#month       NaN
+#seats       NaN
+#speed       NaN
+#dtype: float64
+# here we can say that there is not any relatiosnship between flights table and planes table
+
+
+
+# Q4:- which airplane manufacturer incurred the most delays in the analysis period?
+
+joint = pd.merge(flights,planes,on=['tailnum'],how='inner')
+joint[['manufacturer','dep_delay']].max()
+
+Output:-
+#manufacturer    STEWART MACO
+#dep_delay             1301.0
+#dtype: object
+
+
+
+# Q5:- which are the two most connected cities?
+
+flights[['origin','dest']].value_counts()
+
+Output:-
+origin  dest
+#JFK     LAX     11262
+#LGA     ATL     10263
+
+
