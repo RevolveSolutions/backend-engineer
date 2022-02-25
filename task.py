@@ -49,9 +49,9 @@ def departure_cities(flights_file, airports_file):
     return cities
 
 
-# Here I'm getting the expected output by using List Comprehensions.
-
 # Q3:- what is the relationship between flights and planes tables?
+
+# Here I'm getting the expected output by using List Comprehensions.
 
 
 def relationship(flights_file, planes_file):
